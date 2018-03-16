@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="phone_db_2018Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="p_company">
+    <Key>
+      <PropertyRef Name="company_id" />
+    </Key>
+    <Property Name="company_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="phone" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="address" Type="varchar" MaxLength="50" />
+    <Property Name="country" Type="varchar" MaxLength="50" />
+    <Property Name="code_no" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="p_customer">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="identity_no" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="date_of_birth" Type="date" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="50" />
+    <Property Name="company" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="p_menu">
+    <Key>
+      <PropertyRef Name="menu_id" />
+    </Key>
+    <Property Name="menu_id" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="menu_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="link" Type="nvarchar" MaxLength="50" />
+    <Property Name="alias" Type="nvarchar" MaxLength="50" />
+    <Property Name="menu_category_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="parent_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="authority_user" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="p_menu_category">
+    <Key>
+      <PropertyRef Name="menu_category_id" />
+    </Key>
+    <Property Name="menu_category_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="menu_category_name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="p_phone">
+    <Key>
+      <PropertyRef Name="phone_id" />
+    </Key>
+    <Property Name="phone_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone_name" Type="varchar" MaxLength="50" />
+    <Property Name="cost" Type="varchar" MaxLength="50" />
+    <Property Name="date_issue" Type="date" />
+    <Property Name="company_id" Type="varchar" MaxLength="50" />
+    <Property Name="code_no" Type="varchar" MaxLength="50" />
+    <Property Name="phone_category_id" Type="varchar" MaxLength="50" />
+    <Property Name="phone_detail_id" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="p_phone_category">
+    <Key>
+      <PropertyRef Name="phone_category_id" />
+    </Key>
+    <Property Name="phone_category_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone_category_name" Type="varchar" MaxLength="50" />
+    <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="company_id" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="p_phone_detail">
+    <Key>
+      <PropertyRef Name="phone_detail_id" />
+    </Key>
+    <Property Name="phone_detail_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ram" Type="varchar" MaxLength="50" />
+    <Property Name="memory" Type="varchar" MaxLength="50" />
+    <Property Name="screen_size" Type="varchar" MaxLength="50" />
+    <Property Name="pin" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="p_user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="company_id" Type="varchar" MaxLength="50" />
+    <Property Name="authority" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="phone_booking">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="phone_id" Type="varchar" MaxLength="50" />
+    <Property Name="date_booking" Type="date" />
+    <Property Name="status" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="address" Type="varchar" MaxLength="50" />
+    <Property Name="phone_no" Type="varchar" MaxLength="50" />
+    <Property Name="phone_category_id" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_p_menu_p_menu_category">
+    <End Role="p_menu_category" Type="Self.p_menu_category" Multiplicity="1" />
+    <End Role="p_menu" Type="Self.p_menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_menu_category">
+        <PropertyRef Name="menu_category_id" />
+      </Principal>
+      <Dependent Role="p_menu">
+        <PropertyRef Name="menu_category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_p_phone_category_p_company">
+    <End Role="p_company" Type="Self.p_company" Multiplicity="1" />
+    <End Role="p_phone_category" Type="Self.p_phone_category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_company">
+        <PropertyRef Name="company_id" />
+      </Principal>
+      <Dependent Role="p_phone_category">
+        <PropertyRef Name="company_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_p_phone_p_company">
+    <End Role="p_company" Type="Self.p_company" Multiplicity="0..1" />
+    <End Role="p_phone" Type="Self.p_phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_company">
+        <PropertyRef Name="company_id" />
+      </Principal>
+      <Dependent Role="p_phone">
+        <PropertyRef Name="company_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_p_phone_p_phone_category1">
+    <End Role="p_phone_category" Type="Self.p_phone_category" Multiplicity="0..1" />
+    <End Role="p_phone" Type="Self.p_phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_phone_category">
+        <PropertyRef Name="phone_category_id" />
+      </Principal>
+      <Dependent Role="p_phone">
+        <PropertyRef Name="phone_category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_p_phone_p_phone_detail">
+    <End Role="p_phone_detail" Type="Self.p_phone_detail" Multiplicity="0..1" />
+    <End Role="p_phone" Type="Self.p_phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_phone_detail">
+        <PropertyRef Name="phone_detail_id" />
+      </Principal>
+      <Dependent Role="p_phone">
+        <PropertyRef Name="phone_detail_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_p_user_p_company">
+    <End Role="p_company" Type="Self.p_company" Multiplicity="0..1" />
+    <End Role="p_user" Type="Self.p_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_company">
+        <PropertyRef Name="company_id" />
+      </Principal>
+      <Dependent Role="p_user">
+        <PropertyRef Name="company_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_phone_booking_p_phone">
+    <End Role="p_phone" Type="Self.p_phone" Multiplicity="0..1" />
+    <End Role="phone_booking" Type="Self.phone_booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_phone">
+        <PropertyRef Name="phone_id" />
+      </Principal>
+      <Dependent Role="phone_booking">
+        <PropertyRef Name="phone_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_phone_booking_p_phone_category">
+    <End Role="p_phone_category" Type="Self.p_phone_category" Multiplicity="1" />
+    <End Role="phone_booking" Type="Self.phone_booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_phone_category">
+        <PropertyRef Name="phone_category_id" />
+      </Principal>
+      <Dependent Role="phone_booking">
+        <PropertyRef Name="phone_category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="phone_db_2018ModelStoreContainer">
+    <EntitySet Name="p_company" EntityType="Self.p_company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="p_customer" EntityType="Self.p_customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="p_menu" EntityType="Self.p_menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="p_menu_category" EntityType="Self.p_menu_category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="p_phone" EntityType="Self.p_phone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="p_phone_category" EntityType="Self.p_phone_category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="p_phone_detail" EntityType="Self.p_phone_detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="p_user" EntityType="Self.p_user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="phone_booking" EntityType="Self.phone_booking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_p_menu_p_menu_category" Association="Self.FK_p_menu_p_menu_category">
+      <End Role="p_menu_category" EntitySet="p_menu_category" />
+      <End Role="p_menu" EntitySet="p_menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_p_phone_category_p_company" Association="Self.FK_p_phone_category_p_company">
+      <End Role="p_company" EntitySet="p_company" />
+      <End Role="p_phone_category" EntitySet="p_phone_category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_p_phone_p_company" Association="Self.FK_p_phone_p_company">
+      <End Role="p_company" EntitySet="p_company" />
+      <End Role="p_phone" EntitySet="p_phone" />
+    </AssociationSet>
+    <AssociationSet Name="FK_p_phone_p_phone_category1" Association="Self.FK_p_phone_p_phone_category1">
+      <End Role="p_phone_category" EntitySet="p_phone_category" />
+      <End Role="p_phone" EntitySet="p_phone" />
+    </AssociationSet>
+    <AssociationSet Name="FK_p_phone_p_phone_detail" Association="Self.FK_p_phone_p_phone_detail">
+      <End Role="p_phone_detail" EntitySet="p_phone_detail" />
+      <End Role="p_phone" EntitySet="p_phone" />
+    </AssociationSet>
+    <AssociationSet Name="FK_p_user_p_company" Association="Self.FK_p_user_p_company">
+      <End Role="p_company" EntitySet="p_company" />
+      <End Role="p_user" EntitySet="p_user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_phone_booking_p_phone" Association="Self.FK_phone_booking_p_phone">
+      <End Role="p_phone" EntitySet="p_phone" />
+      <End Role="phone_booking" EntitySet="phone_booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_phone_booking_p_phone_category" Association="Self.FK_phone_booking_p_phone_category">
+      <End Role="p_phone_category" EntitySet="p_phone_category" />
+      <End Role="phone_booking" EntitySet="phone_booking" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

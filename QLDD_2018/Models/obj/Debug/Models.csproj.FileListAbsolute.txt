@@ -1,0 +1,10 @@
+D:\Study\C#\QLDD_2018\Models\bin\Debug\Models.dll.config
+D:\Study\C#\QLDD_2018\Models\bin\Debug\Models.dll
+D:\Study\C#\QLDD_2018\Models\bin\Debug\Models.pdb
+D:\Study\C#\QLDD_2018\Models\bin\Debug\EntityFramework.dll
+D:\Study\C#\QLDD_2018\Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\Study\C#\QLDD_2018\Models\bin\Debug\EntityFramework.xml
+D:\Study\C#\QLDD_2018\Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\Study\C#\QLDD_2018\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+D:\Study\C#\QLDD_2018\Models\obj\Debug\Models.dll
+D:\Study\C#\QLDD_2018\Models\obj\Debug\Models.pdb

@@ -1,0 +1,23 @@
+.ul_lang_select{
+    list-style: none;
+    padding: 0px;
+    padding-left: 10px;
+    margin: 0px;
+    border-bottom: solid 1px #ddd;
+    margin-top: 15px;
+}
+.ul_lang_select li{
+    float: left;
+    cursor: pointer;
+    border-radius: 5px 5px 0px 0px;
+    margin-right: 5px;
+    border: solid 1px #ddd;
+    border-bottom: none;
+    background: #ddd;
+    height: 35px;
+    line-height: 35px;
+    padding: 0px 15px;
+}
+.ul_lang_select li.active, .ul_lang_select li:hover{
+    background: #fff;
+}

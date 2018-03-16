@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="phone_db_2018Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="p_company">
+    <Key>
+      <PropertyRef Name="company_id" />
+    </Key>
+    <Property Name="company_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="code_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="p_phone_category" Relationship="Self.FK_p_phone_category_p_company" FromRole="p_company" ToRole="p_phone_category" />
+    <NavigationProperty Name="p_phone" Relationship="Self.FK_p_phone_p_company" FromRole="p_company" ToRole="p_phone" />
+    <NavigationProperty Name="p_user" Relationship="Self.FK_p_user_p_company" FromRole="p_company" ToRole="p_user" />
+  </EntityType>
+  <EntityType Name="p_customer">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="identity_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="p_menu">
+    <Key>
+      <PropertyRef Name="menu_id" />
+    </Key>
+    <Property Name="menu_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="menu_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="alias" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="menu_category_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="parent_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="p_menu_category" Relationship="Self.FK_p_menu_p_menu_category" FromRole="p_menu" ToRole="p_menu_category" />
+    <Property Name="authority_user" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="p_menu_category">
+    <Key>
+      <PropertyRef Name="menu_category_id" />
+    </Key>
+    <Property Name="menu_category_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="menu_category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="p_menu" Relationship="Self.FK_p_menu_p_menu_category" FromRole="p_menu_category" ToRole="p_menu" />
+  </EntityType>
+  <EntityType Name="p_phone">
+    <Key>
+      <PropertyRef Name="phone_id" />
+    </Key>
+    <Property Name="phone_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cost" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date_issue" Type="DateTime" Precision="0" />
+    <Property Name="company_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="code_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone_category_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="p_company" Relationship="Self.FK_p_phone_p_company" FromRole="p_phone" ToRole="p_company" />
+    <NavigationProperty Name="p_phone_category" Relationship="Self.FK_p_phone_p_phone_category" FromRole="p_phone" ToRole="p_phone_category" />
+    <NavigationProperty Name="phone_booking" Relationship="Self.FK_phone_booking_p_phone" FromRole="p_phone" ToRole="phone_booking" />
+    <Property Name="phone_detail_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="p_phone_detail1" Relationship="phone_db_2018Model.FK_p_phone_p_phone_detail" FromRole="p_phone" ToRole="p_phone_detail" />
+  </EntityType>
+  <EntityType Name="p_phone_category">
+    <Key>
+      <PropertyRef Name="phone_category_id" />
+    </Key>
+    <Property Name="phone_category_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone_category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="company_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="p_company" Relationship="Self.FK_p_phone_category_p_company" FromRole="p_phone_category" ToRole="p_company" />
+    <NavigationProperty Name="p_phone" Relationship="Self.FK_p_phone_p_phone_category" FromRole="p_phone_category" ToRole="p_phone" />
+    <NavigationProperty Name="phone_booking" Relationship="Self.FK_phone_booking_p_phone_category" FromRole="p_phone_category" ToRole="phone_booking" />
+  </EntityType>
+  <EntityType Name="p_phone_detail">
+    <Key>
+      <PropertyRef Name="phone_detail_id" />
+    </Key>
+    <Property Name="phone_detail_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ram" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="memory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="screen_size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="p_phone1" Relationship="phone_db_2018Model.FK_p_phone_p_phone_detail" FromRole="p_phone_detail" ToRole="p_phone" />
+  </EntityType>
+  <EntityType Name="p_user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="company_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="authority" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="p_company" Relationship="Self.FK_p_user_p_company" FromRole="p_user" ToRole="p_company" />
+  </EntityType>
+  <EntityType Name="phone_booking">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="phone_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date_booking" Type="DateTime" Precision="0" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone_category_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="p_phone" Relationship="Self.FK_phone_booking_p_phone" FromRole="phone_booking" ToRole="p_phone" />
+    <NavigationProperty Name="p_phone_category" Relationship="Self.FK_phone_booking_p_phone_category" FromRole="phone_booking" ToRole="p_phone_category" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_p_phone_category_p_company">
+    <End Role="p_company" Type="Self.p_company" Multiplicity="1" />
+    <End Role="p_phone_category" Type="Self.p_phone_category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_company">
+        <PropertyRef Name="company_id" />
+      </Principal>
+      <Dependent Role="p_phone_category">
+        <PropertyRef Name="company_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_p_phone_p_company">
+    <End Role="p_company" Type="Self.p_company" Multiplicity="0..1" />
+    <End Role="p_phone" Type="Self.p_phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_company">
+        <PropertyRef Name="company_id" />
+      </Principal>
+      <Dependent Role="p_phone">
+        <PropertyRef Name="company_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_p_user_p_company">
+    <End Role="p_company" Type="Self.p_company" Multiplicity="0..1" />
+    <End Role="p_user" Type="Self.p_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_company">
+        <PropertyRef Name="company_id" />
+      </Principal>
+      <Dependent Role="p_user">
+        <PropertyRef Name="company_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_p_menu_p_menu_category">
+    <End Role="p_menu_category" Type="Self.p_menu_category" Multiplicity="1" />
+    <End Role="p_menu" Type="Self.p_menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_menu_category">
+        <PropertyRef Name="menu_category_id" />
+      </Principal>
+      <Dependent Role="p_menu">
+        <PropertyRef Name="menu_category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_p_phone_p_phone_category">
+    <End Role="p_phone_category" Type="Self.p_phone_category" Multiplicity="0..1" />
+    <End Role="p_phone" Type="Self.p_phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_phone_category">
+        <PropertyRef Name="phone_category_id" />
+      </Principal>
+      <Dependent Role="p_phone">
+        <PropertyRef Name="phone_category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_phone_booking_p_phone">
+    <End Role="p_phone" Type="Self.p_phone" Multiplicity="0..1" />
+    <End Role="phone_booking" Type="Self.phone_booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_phone">
+        <PropertyRef Name="phone_id" />
+      </Principal>
+      <Dependent Role="phone_booking">
+        <PropertyRef Name="phone_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_phone_booking_p_phone_category">
+    <End Role="p_phone_category" Type="Self.p_phone_category" Multiplicity="1" />
+    <End Role="phone_booking" Type="Self.phone_booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_phone_category">
+        <PropertyRef Name="phone_category_id" />
+      </Principal>
+      <Dependent Role="phone_booking">
+        <PropertyRef Name="phone_category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="phone_db_2018Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="p_company" EntityType="Self.p_company" />
+    <EntitySet Name="p_customer" EntityType="Self.p_customer" />
+    <EntitySet Name="p_menu" EntityType="Self.p_menu" />
+    <EntitySet Name="p_menu_category" EntityType="Self.p_menu_category" />
+    <EntitySet Name="p_phone" EntityType="Self.p_phone" />
+    <EntitySet Name="p_phone_category" EntityType="Self.p_phone_category" />
+    <EntitySet Name="p_phone_detail" EntityType="Self.p_phone_detail" />
+    <EntitySet Name="p_user" EntityType="Self.p_user" />
+    <EntitySet Name="phone_booking" EntityType="Self.phone_booking" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_p_phone_category_p_company" Association="Self.FK_p_phone_category_p_company">
+      <End Role="p_company" EntitySet="p_company" />
+      <End Role="p_phone_category" EntitySet="p_phone_category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_p_phone_p_company" Association="Self.FK_p_phone_p_company">
+      <End Role="p_company" EntitySet="p_company" />
+      <End Role="p_phone" EntitySet="p_phone" />
+    </AssociationSet>
+    <AssociationSet Name="FK_p_user_p_company" Association="Self.FK_p_user_p_company">
+      <End Role="p_company" EntitySet="p_company" />
+      <End Role="p_user" EntitySet="p_user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_p_menu_p_menu_category" Association="Self.FK_p_menu_p_menu_category">
+      <End Role="p_menu_category" EntitySet="p_menu_category" />
+      <End Role="p_menu" EntitySet="p_menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_p_phone_p_phone_category" Association="Self.FK_p_phone_p_phone_category">
+      <End Role="p_phone_category" EntitySet="p_phone_category" />
+      <End Role="p_phone" EntitySet="p_phone" />
+    </AssociationSet>
+    <AssociationSet Name="FK_phone_booking_p_phone" Association="Self.FK_phone_booking_p_phone">
+      <End Role="p_phone" EntitySet="p_phone" />
+      <End Role="phone_booking" EntitySet="phone_booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_phone_booking_p_phone_category" Association="Self.FK_phone_booking_p_phone_category">
+      <End Role="p_phone_category" EntitySet="p_phone_category" />
+      <End Role="phone_booking" EntitySet="phone_booking" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(phone_db_2018Model.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(phone_db_2018Model.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <AssociationSet Name="FK_p_phone_p_phone_detail" Association="phone_db_2018Model.FK_p_phone_p_phone_detail">
+      <End Role="p_phone_detail" EntitySet="p_phone_detail" />
+      <End Role="p_phone" EntitySet="p_phone" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <Association Name="FK_p_phone_p_phone_detail">
+    <End Type="phone_db_2018Model.p_phone_detail" Role="p_phone_detail" Multiplicity="0..1" />
+    <End Type="phone_db_2018Model.p_phone" Role="p_phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_phone_detail">
+        <PropertyRef Name="phone_detail_id" />
+      </Principal>
+      <Dependent Role="p_phone">
+        <PropertyRef Name="phone_detail_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

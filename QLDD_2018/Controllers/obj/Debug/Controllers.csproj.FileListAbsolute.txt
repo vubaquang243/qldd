@@ -1,0 +1,9 @@
+D:\Study\C#\QLDD_2018\Controllers\bin\Debug\Controllers.dll
+D:\Study\C#\QLDD_2018\Controllers\bin\Debug\Controllers.pdb
+D:\Study\C#\QLDD_2018\Controllers\obj\Debug\Controllers.csprojResolveAssemblyReference.cache
+D:\Study\C#\QLDD_2018\Controllers\obj\Debug\Controllers.dll
+D:\Study\C#\QLDD_2018\Controllers\obj\Debug\Controllers.pdb
+D:\Study\C#\QLDD_2018\Controllers\bin\Debug\Models.dll
+D:\Study\C#\QLDD_2018\Controllers\bin\Debug\EntityFramework.dll
+D:\Study\C#\QLDD_2018\Controllers\bin\Debug\Models.pdb
+D:\Study\C#\QLDD_2018\Controllers\bin\Debug\EntityFramework.xml
